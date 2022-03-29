@@ -63,17 +63,28 @@
                             <div class="form-group">
                                 <label for="name" class="col-sm-2 control-label">Comment</label>
                                 <div class="col-sm-12">
-                                    <textarea class="form-control" id="comment" name="comment" rows="4" cols="10" placeholder="Enter comment" value="" required=""></textarea>
+                                    <textarea class="form-control" id="comment_name" name="comment_name" rows="4" cols="10" placeholder="Enter comment" value="" required=""></textarea>
 
                                     {{-- <input type="text" class="form-control" id="comment" name="comment" placeholder="Enter comment" value="" maxlength="50" required=""> --}}
                                 </div>
                             </div>
 
                             <div class="form-group selectedcomments">
-                                <label class="col-sm-5 control-label">Comment Author</label>
+
+                                <label class="col-sm-5 control-label mt-2">Forename</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" id="author" name="author" placeholder="Enter author" value="" required="">
+                                    <input type="text" class="form-control" id="forename" name="forename" placeholder="Enter forename" value="" required="">
                                 </div>
+
+                                <label class="col-sm-5 control-label  mt-2">Surname</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Enter surname" value="" required="">
+                                </div>
+                                <label class="col-sm-5 control-label  mt-2">Email</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter email" value="" required="">
+                                </div>
+
                             </div>
 
                             <div class="col-sm-offset-2 col-sm-10">

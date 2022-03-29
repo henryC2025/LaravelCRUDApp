@@ -15,18 +15,18 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->string('comment');
-            $table->string('author');
-            $table->timestamps();
+            // $table->string('comment');
+            // $table->string('author');
+            // $table->timestamps();
             // $table->id();
-            // $table->string('comment_id')->default('RE'.$table->id());
-            // $table->string('comment_name');
-            // $table->string('forename');
-            // $table->string('surname');
-            // $table->string('email');
+            $table->string('comment_id');
+            $table->string('comment_name');
+            $table->string('forename');
+            $table->string('surname');
+            $table->string('email');
             // $table->integer('validated')->default(0);
             // $table->string('style')->default('n');
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 

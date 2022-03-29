@@ -36,8 +36,10 @@ $(document).ready(function ($) {
                 $("#ajaxCommentModel").html("Edit Comment");
                 $("#ajax-comment-model").modal("show");
                 $("#id").val(res.id);
-                $("#comment").val(res.comment);
-                $("#author").val(res.author);
+                $("#comment_name").val(res.comment_name);
+                $("#forename").val(res.forename);
+                $("#surname").val(res.surname);
+                $("#email").val(res.email);
             },
         });
     });
@@ -63,9 +65,11 @@ $(document).ready(function ($) {
 
     $("body").on("click", "#btn-save", function (event) {
         var id = $("#id").val();
-        var comment = $("#comment").val();
-        var author = $("#author").val();
-
+        var comment_name = $("#comment_name").val();
+        var forename = $("#forename").val();
+        var surname = $("#surname").val();
+        var email = $("#email").val();
+        var comment_id = "RO".concat(String($("#id").val()).padStart(2, "0"));
         $("#btn-save").html("Please Wait...");
         $("#btn-save").attr("disabled", true);
 
@@ -75,8 +79,11 @@ $(document).ready(function ($) {
             url: `add-update-${commentCategory}-comment`,
             data: {
                 id: id,
-                comment: comment,
-                author: author,
+                comment_id: comment_id,
+                comment_name: comment_name,
+                forename: forename,
+                surname: surname,
+                email: email,
             },
             dataType: "json",
             success: function (res) {

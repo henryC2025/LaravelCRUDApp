@@ -18,8 +18,8 @@ class AjaxRESULTSCRUDController extends Controller
    
         return view('ajax-results-crud',$data);
     }
-    
-   
+     
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,13 +34,13 @@ class AjaxRESULTSCRUDController extends Controller
                         'id' => $request->id
                     ],
                     [
-                        'comment' => $request->comment, 
-                        'author' => $request->author,
-                        // 'comment_id' => $request->comment_id,
-                        // 'comment_name' => $request->comment_name,
-                        // 'forename' => $request->forename,
-                        // 'surname' => $request->surname,
-                        // 'email' => $request->email,
+                        // 'comment' => $request->comment, 
+                        // 'author' => $request->author,
+                        'comment_id' => $request->comment_id,
+                        'comment_name' => $request->comment_name,
+                        'forename' => $request->forename,
+                        'surname' => $request->surname,
+                        'email' => $request->email,
                         // 'valididated' => $request->validated,
                         // 'style' => $request->style
                     ]);
