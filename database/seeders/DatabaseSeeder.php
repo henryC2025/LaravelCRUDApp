@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call(BookSeederCSV::class);
+        $this->call(ResultsSeederCSV::class);
+        $this->call(TerminologySeederCSV::class);
+
     }
 }

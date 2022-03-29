@@ -1,5 +1,13 @@
 require("./bootstrap");
 
+let commentCategory = "comment";
+
+if (window.location.href.indexOf("results") != -1) {
+    commentCategory = "result";
+} else {
+    commentCategory = "terminology";
+}
+
 $(document).ready(function ($) {
     $.ajaxSetup({
         headers: {
@@ -7,10 +15,10 @@ $(document).ready(function ($) {
         },
     });
 
-    $("#addNewBook").click(function () {
-        $("#addEditBookForm").trigger("reset");
-        $("#ajaxBookModel").html("Add Book");
-        $("#ajax-book-model").modal("show");
+    $("#addNewComment").click(function () {
+        $("#addEditCommentForm").trigger("reset");
+        $("#ajaxCommentModel").html("Add Comment");
+        $("#ajax-comment-model").modal("show");
     });
 
     $("body").on("click", ".edit", function () {
@@ -19,17 +27,16 @@ $(document).ready(function ($) {
         // ajax
         $.ajax({
             type: "POST",
-            url: "edit-book",
+            url: `edit-${commentCategory}-comment`,
             data: {
                 id: id,
             },
             dataType: "json",
             success: function (res) {
-                $("#ajaxBookModel").html("Edit Book");
-                $("#ajax-book-model").modal("show");
+                $("#ajaxCommentModel").html("Edit Comment");
+                $("#ajax-comment-model").modal("show");
                 $("#id").val(res.id);
-                $("#title").val(res.title);
-                $("#code").val(res.code);
+                $("#comment").val(res.comment);
                 $("#author").val(res.author);
             },
         });
@@ -42,7 +49,7 @@ $(document).ready(function ($) {
             // ajax
             $.ajax({
                 type: "POST",
-                url: "delete-book",
+                url: `delete-${commentCategory}-comment`,
                 data: {
                     id: id,
                 },
@@ -56,8 +63,7 @@ $(document).ready(function ($) {
 
     $("body").on("click", "#btn-save", function (event) {
         var id = $("#id").val();
-        var title = $("#title").val();
-        var code = $("#code").val();
+        var comment = $("#comment").val();
         var author = $("#author").val();
 
         $("#btn-save").html("Please Wait...");
@@ -66,11 +72,10 @@ $(document).ready(function ($) {
         // ajax
         $.ajax({
             type: "POST",
-            url: "add-update-book",
+            url: `add-update-${commentCategory}-comment`,
             data: {
                 id: id,
-                title: title,
-                code: code,
+                comment: comment,
                 author: author,
             },
             dataType: "json",
@@ -90,7 +95,7 @@ $("#btnGet").click(function () {
     $("#Table1 input[type=checkbox]:checked").each(function () {
         var row = $(this).closest("tr")[0];
         // message += row.cells[2].innerHTML;
-        message += " " + row.cells[2].innerHTML;
+        message += "" + row.cells[2].innerHTML;
         // message += " " + row.cells[4].innerHTML;
         message += "\n-----------------------\n";
     });
