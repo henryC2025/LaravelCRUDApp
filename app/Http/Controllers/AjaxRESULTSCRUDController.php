@@ -14,8 +14,9 @@ class AjaxRESULTSCRUDController extends Controller
      */
     public function index()
     {
-        $data['results'] = Results::orderBy('id','asc')->paginate(5);
-   
+        $data['results'] = Results::orderBy('id','asc')->where('validated', '1')->paginate(20);
+        $data['resultsUnvalidated'] = Results::orderBy('id','asc')->where('validated', '0')->paginate(20);
+
         return view('ajax-results-crud',$data);
     }
      
@@ -41,7 +42,7 @@ class AjaxRESULTSCRUDController extends Controller
                         'forename' => $request->forename,
                         'surname' => $request->surname,
                         'email' => $request->email,
-                        // 'valididated' => $request->validated,
+                        'validated' => $request->validated,
                         // 'style' => $request->style
                     ]);
     

@@ -6,9 +6,11 @@
         <thead>
             <tr>
                 <th scope="col" style="width:10%">#</th>
-                <th scope="col" style="width:15%">ID</th>
+                <th scope="col" style="width:15%">Comment Code</th>
                 <th scope="col" style="width:55%">Comment Description</th>
-                <th scope="col" style="width:20%">Created By</th>
+                <th scope="col" style="width:15%">Created By</th>
+                <th scope="col" style="width:5%"></th>
+
             </tr>
         </thead>
         <tbody>
@@ -16,7 +18,7 @@
             <tr>
                 <td><input type="checkbox" /></td>
                 <td>{{ $result->comment_id }}</td>
-                <td>{{ $result->id }}</td>
+                <td>{{ $result->comment_name }}</td>
                 <td>{{ $result->forename . " " . $result->surname }} </td>
                 <td>
                     <a href="javascript:void(0)" id="edit-button" class="btn btn-primary edit" data-id="{{ $result->id }}">Edit</a>

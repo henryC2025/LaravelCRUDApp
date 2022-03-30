@@ -31,7 +31,7 @@ class ResultsSeederCSV extends Seeder
                     'forename' => $data[2],
                     'surname' => $data[3],
                     'email' => $data[4],
-                    // 'valididated' => $data[5],
+                    'validated' => $data[5],
                     // 'style' => $data[6]
                 ]);
             }

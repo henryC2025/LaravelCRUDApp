@@ -40,6 +40,7 @@ $(document).ready(function ($) {
                 $("#forename").val(res.forename);
                 $("#surname").val(res.surname);
                 $("#email").val(res.email);
+                $("#validated").val(res.validated);
             },
         });
     });
@@ -63,13 +64,40 @@ $(document).ready(function ($) {
         }
     });
 
+    $("body").on("click", ".addBtn", function (event) {
+        const label = document.querySelector("#validationLabel");
+        const div = document.querySelector("#validationDiv");
+
+        label.classList.add("hidden");
+        div.classList.add("hidden");
+        console.log("hi");
+    });
+
+    $("body").on("click", "#edit-button", function (event) {
+        const label = document.querySelector("#validationLabel");
+        const div = document.querySelector("#validationDiv");
+
+        label.classList.remove("hidden");
+        div.classList.remove("hidden");
+    });
+
     $("body").on("click", "#btn-save", function (event) {
+        let commentCode = "";
+
+        if (window.location.href.indexOf("results") != -1) {
+            commentCode = "RO";
+        } else {
+            commentCode = "TE";
+        }
+
         var id = $("#id").val();
         var comment_name = $("#comment_name").val();
         var forename = $("#forename").val();
         var surname = $("#surname").val();
         var email = $("#email").val();
-        var comment_id = "RO".concat(String($("#id").val()).padStart(2, "0"));
+        var comment_id = commentCode.concat(String(id).padStart(2, "0"));
+        var validated = $("#validated").val();
+
         $("#btn-save").html("Please Wait...");
         $("#btn-save").attr("disabled", true);
 
@@ -84,6 +112,7 @@ $(document).ready(function ($) {
                 forename: forename,
                 surname: surname,
                 email: email,
+                validated: validated,
             },
             dataType: "json",
             success: function (res) {
@@ -104,7 +133,8 @@ $("#btnGet").click(function () {
         // message += row.cells[2].innerHTML;
         message += "" + row.cells[2].innerHTML;
         // message += " " + row.cells[4].innerHTML;
-        message += "\n-----------------------\n";
+        message +=
+            "\n------------------------------------------------------------------------------------------------------------------------------------------------------\n";
     });
 
     //Display selected Row data in Alert Box.
@@ -117,4 +147,18 @@ $("#copy").click(function () {
     $("#message").select();
     document.execCommand("copy");
     alert("Copied On clipboard");
+});
+
+$(".selectall-button").click(function () {
+    var checkBoxes = document.getElementsByTagName("input");
+    for (var i = 0, max = checkBoxes.length; i < max; i++) {
+        if (checkBoxes[i].type === "checkbox") checkBoxes[i].checked = true;
+    }
+});
+
+$(".deselectall-button").click(function () {
+    var checkBoxes = document.getElementsByTagName("input");
+    for (var i = 0, max = checkBoxes.length; i < max; i++) {
+        if (checkBoxes[i].type === "checkbox") checkBoxes[i].checked = false;
+    }
 });

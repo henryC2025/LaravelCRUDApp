@@ -10,6 +10,6 @@ class Terminology extends Model
     use HasFactory;
 
     protected $fillable = [
-        'comment', 'author'
+        'comment_id','comment_name','forename','surname','email', 'validated'
     ];
 }

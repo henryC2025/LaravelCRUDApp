@@ -9,20 +9,19 @@
 </head>
 <body>
 
+    @include('header')
     <div class="container mt-2">
 
+        @include('navigation')
+
+        <div class="col-md-12 card-header text-center font-weight-bold">
+
+            <h2>{{str_contains((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", 'result') ? 'Results' : 'Terminology'}} Comments</h2>
+
+        </div>
+
         <div class="row">
-
-            <div class="col-md-12 card-header text-center font-weight-bold">
-
-                <h2>{{str_contains((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", 'result') ? 'Results' : 'Terminology'}} Comments</h2>
-
-                <button class="btn btn-nav" onclick="document.location='/'">Home</button>
-                <button class="btn btn-nav" onclick="document.location='/ajax-results-crud'">Results</button>
-                <button class="btn btn-nav" onclick="document.location='/ajax-terminology-crud'">Terminology</button>
-
-            </div>
-            <div class="col-md-12 mt-1 mb-2"><button type="button" id="addNewComment" class="btn btn-success">Add</button></div>
+            <div class="col-md-12 mt-1 mb-2"><button type="button" id="addNewComment" class="btn btn-success addBtn">Add New Comment</button></div>
 
             <!-- main section table --->
             @yield('main')
@@ -37,11 +36,13 @@
             }?>
 
             <form action="comment-message" class="text-center mt-5">
-                <input id="btnGet" type="button" value="Get Selected" />
-                <button type="button" id="copy">Copy</button>
-                <input type="submit" value="Submit" name="submit">
+                <button class="btn deselectall-button" type="button" id="toggle-button">Deselect All</button>
+                <button class="btn selectall-button" type="button" id="toggle-button">Select All</button>
+                <input class="btn" id="btnGet" type="button" value="Get Selected" />
+                <button class="btn" type="button" id="copy">Copy</button>
+                <input class="btn" type="submit" value="Submit" name="submit">
                 <br>
-                <textarea class="mb-5 mt-2" id="message" rows="10" cols="100" name="message-comment">Selection</textarea>
+                <textarea class="mb-5 mt-2" id="message" rows="10" cols="100" name="message-comment"></textarea>
                 {{-- Enter name<input type="textarea" name="name"> --}}
             </form>
 
@@ -71,6 +72,7 @@
 
                             <div class="form-group selectedcomments">
 
+
                                 <label class="col-sm-5 control-label mt-2">Forename</label>
                                 <div class="col-sm-12">
                                     <input type="text" class="form-control" id="forename" name="forename" placeholder="Enter forename" value="" required="">
@@ -83,6 +85,13 @@
                                 <label class="col-sm-5 control-label  mt-2">Email</label>
                                 <div class="col-sm-12">
                                     <input type="text" class="form-control" id="email" name="email" placeholder="Enter email" value="" required="">
+                                </div>
+                                <label class="col-sm-5 control-label validation mt-4" id="validationLabel">Validated (1 = ✅ | 0 = ❌)</label>
+                                <div class="col-sm-12" id="validationDiv">
+                                    <select id="validated" name="validated" class="form-control" value="" required="">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                    </select>
                                 </div>
 
                             </div>

@@ -9,24 +9,20 @@
 </head>
 <body>
 
+    @include('header')
     <div class="container mt-2">
 
-        <div class="row">
-
-            <div class="col-md-12 card-header text-center font-weight-bold">
-
-                <h2>Full Comment</h2>
-
-                <button class="btn btn-nav" onclick="document.location='/'">Home</button>
-                <button class="btn btn-nav" onclick="document.location='/ajax-results-crud'">Results</button>
-                <button class="btn btn-nav" onclick="document.location='/ajax-terminology-crud'">Terminology</button>
-            </div>
-        </div>
+        @include('navigation')
 
         <div class="row">
             <div class="col-md-12 card-header text-center submitted-comment mt-50">
+                <p class="comment-header">Copy and Paste these comments:</>
+                </p>
 
-                <p class="text-left"><?php echo str_replace('-', '', $_GET["message-comment"]) ?></p>
+                <button class="btn text-center btn col-md-12 " onclick="history.back()">Go Back</button>
+                <textarea class="mt-1" id="message" rows="10" cols="100" name="message-comment">&#13;&#10;<?php echo str_replace('-', '', $_GET["message-comment"]) ?></textarea>
+
+                <button class="text-center btn col-md-12 " type="button" id="copy">Copy</button>
             </div>
         </div>
 

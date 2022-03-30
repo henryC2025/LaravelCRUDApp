@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('forename');
             $table->string('surname');
             $table->string('email');
-            // $table->integer('validated')->default(0);
+            $table->integer('validated')->default(0);
             // $table->string('style')->default('n');
             $table->timestamps();
         });

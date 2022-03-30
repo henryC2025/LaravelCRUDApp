@@ -14,21 +14,16 @@ class AjaxCOMMENTCRUDController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public static function checkCommentType(string $comment){
-        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";    
-        return str_contains($actual_link, $comment);
-    }
+    
 
     public function index()
     {
-        if(AjaxCOMMENTCRUDController::checkCommentType('results')){
-            $data['results'] = Results::orderBy('id','asc')->paginate(5);
-            return view('ajax-results-crud',$data);
-        }
-        else if(AjaxCOMMENTCRUDController::checkCommentType('terminology')){
-            $data['terminology'] = Terminology::orderBy('id','asc')->paginate(5);
-            return view('ajax-terminology-crud',$data);
-        }
+        
+            $data['results'] = Results::orderBy('id','asc')->paginate();
+            $data['terminology'] = Results::orderBy('id','asc')->paginate();
+
+            return view('ajax-all-comments-crud',$data);
+
         
     }
     
