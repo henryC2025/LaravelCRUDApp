@@ -1,11 +1,16 @@
 require("./bootstrap");
 
-let commentCategory = "comment";
+let commentCategory = "";
+let commentCode = "";
 
-if (window.location.href.indexOf("results") != -1) {
-    commentCategory = "result";
-} else {
-    commentCategory = "terminology";
+function getTableName(tableID) {
+    if (tableID == "TableResults") {
+        commentCategory = "result";
+        commentCode = "RO";
+    } else if (tableID == "TableTerminology") {
+        commentCategory = "terminology";
+        commentCode = "TE";
+    }
 }
 
 $(document).ready(function ($) {
@@ -23,6 +28,8 @@ $(document).ready(function ($) {
 
     $("body").on("click", ".edit", function () {
         var id = $(this).data("id");
+        var tableID = $(this).closest("table").attr("id");
+        getTableName(tableID);
 
         // ajax
         $.ajax({
@@ -41,11 +48,15 @@ $(document).ready(function ($) {
                 $("#surname").val(res.surname);
                 $("#email").val(res.email);
                 $("#validated").val(res.validated);
+                $("#style").val(res.style);
             },
         });
     });
 
     $("body").on("click", ".delete", function () {
+        var tableID = $(this).closest("table").attr("id");
+        getTableName(tableID);
+
         if (confirm("Delete Record?") == true) {
             var id = $(this).data("id");
 
@@ -65,41 +76,48 @@ $(document).ready(function ($) {
     });
 
     $("body").on("click", ".addBtn", function (event) {
-        const label = document.querySelector("#validationLabel");
-        const div = document.querySelector("#validationDiv");
+        const validationLabel = document.querySelector("#validationLabel");
+        const validationDiv = document.querySelector("#validationDiv");
+        const styleLabel = document.querySelector("#styleLabel");
+        const styleDiv = document.querySelector("#styleDiv");
 
-        label.classList.add("hidden");
-        div.classList.add("hidden");
-        console.log("hi");
+        validationLabel.classList.add("hidden");
+        validationDiv.classList.add("hidden");
+        styleLabel.classList.add("hidden");
+        styleDiv.classList.add("hidden");
     });
 
     $("body").on("click", "#edit-button", function (event) {
-        const label = document.querySelector("#validationLabel");
-        const div = document.querySelector("#validationDiv");
+        const validationLabel = document.querySelector("#validationLabel");
+        const validationDiv = document.querySelector("#validationDiv");
+        const styleLabel = document.querySelector("#styleLabel");
+        const styleDiv = document.querySelector("#styleDiv");
 
-        label.classList.remove("hidden");
-        div.classList.remove("hidden");
+        validationLabel.classList.remove("hidden");
+        validationDiv.classList.remove("hidden");
+        styleLabel.classList.remove("hidden");
+        styleDiv.classList.remove("hidden");
     });
 
     $("body").on("click", "#btn-save", function (event) {
-        let commentCode = "";
-
-        if (window.location.href.indexOf("results") != -1) {
-            commentCode = "RO";
-        } else {
-            commentCode = "TE";
-        }
+        var tableID = $(this).closest("table").attr("id");
+        getTableName(tableID);
 
         var id = $("#id").val();
+        var comment_id = commentCode.concat(String(id).padStart(2, "0"));
         var comment_name = $("#comment_name").val();
         var forename = $("#forename").val();
         var surname = $("#surname").val();
         var email = $("#email").val();
-        var comment_id = commentCode.concat(String(id).padStart(2, "0"));
         var validated = $("#validated").val();
+        var style = $("#style").val();
 
-        $("#btn-save").html("Please Wait...");
-        $("#btn-save").attr("disabled", true);
+        if (!(id || comment_name || forename || surname || email)) {
+            console.log("empty");
+        }
+
+        // $("#btn-save").html("Please Wait...");
+        // $("#btn-save").attr("disabled", true);
 
         // ajax
         $.ajax({
@@ -113,6 +131,7 @@ $(document).ready(function ($) {
                 surname: surname,
                 email: email,
                 validated: validated,
+                style: style,
             },
             dataType: "json",
             success: function (res) {
@@ -134,7 +153,25 @@ $("#btnGet").click(function () {
         message += "" + row.cells[2].innerHTML;
         // message += " " + row.cells[4].innerHTML;
         message +=
-            "\n------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+            "\n------------------------------------------------------------------------------------------------------------------------------------------------------";
+    });
+
+    $("#TableTerminology input[type=checkbox]:checked").each(function () {
+        var row = $(this).closest("tr")[0];
+        // message += row.cells[2].innerHTML;
+        message += "" + row.cells[2].innerHTML;
+        // message += " " + row.cells[4].innerHTML;
+        message +=
+            "\n------------------------------------------------------------------------------------------------------------------------------------------------------";
+    });
+
+    $("#TableResults input[type=checkbox]:checked").each(function () {
+        var row = $(this).closest("tr")[0];
+        // message += row.cells[2].innerHTML;
+        message += "" + row.cells[2].innerHTML;
+        // message += " " + row.cells[4].innerHTML;
+        message +=
+            "\n------------------------------------------------------------------------------------------------------------------------------------------------------";
     });
 
     //Display selected Row data in Alert Box.

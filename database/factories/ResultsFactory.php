@@ -16,9 +16,6 @@ class ResultsFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'comment' => $this->faker->text,
-            'author' => $this->faker->name,
-        ];
+        
     }
 }

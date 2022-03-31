@@ -15,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxRESULTSCRUDController;
 use App\Http\Controllers\AjaxTERMINOLOGYCRUDController;
 use App\Http\Controllers\AjaxCOMMENTCRUDController;
+use App\Http\Controllers\AjaxVALIDATECRUDController;
 
 Route::get('ajax-all-comments-crud', [AjaxCOMMENTCRUDController::class, 'index']);
+Route::get('ajax-validate-crud', [AjaxVALIDATECRUDController::class, 'index']);
+Route::get('ajax-edit-crud', [AjaxVALIDATECRUDController::class, 'indexEdit']);
 Route::get('ajax-results-crud', [AjaxRESULTSCRUDController::class, 'index']);
 Route::get('ajax-terminology-crud', [AjaxTERMINOLOGYCRUDController::class, 'index']);
+
 
 Route::post('add-update-result-comment', [AjaxRESULTSCRUDController::class, 'store']);
 Route::post('edit-result-comment', [AjaxRESULTSCRUDController::class, 'edit']);

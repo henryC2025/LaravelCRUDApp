@@ -15,8 +15,8 @@ class AjaxTERMINOLOGYCRUDController extends Controller
     public function index()
     {
 
-        $data['terminology'] = Terminology::orderBy('id','asc')->where('validated', '1')->paginate(20);
-        $data['terminologyUnvalidated'] = Terminology::orderBy('id','asc')->where('validated', '0')->paginate(20);
+        $data['terminology'] = Terminology::orderBy('id','asc')->where('validated', '1')->paginate();
+        $data['terminologyUnvalidated'] = Terminology::orderBy('id','asc')->where('validated', '0')->paginate();
    
         return view('ajax-terminology-crud',$data);
     }
@@ -44,7 +44,7 @@ class AjaxTERMINOLOGYCRUDController extends Controller
                         'surname' => $request->surname,
                         'email' => $request->email,
                         'validated' => $request->validated,
-                        // 'style' => $request->style
+                        'style' => $request->style
                     ]);
     
         return response()->json(['success' => true]);

@@ -147,3 +147,11 @@ tr {
 #addNewComment:hover {
     color: #212529;
 }
+
+.btn:active {
+    color: black;
+}
+
+.positive {
+    color: #98fb98;
+}

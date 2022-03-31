@@ -2,7 +2,7 @@
 @section('main')
 
 <div class="col-md-12">
-    <table id="Table1" class="table" style="width:100%">
+    <table id="TableTerminology" class="table" style="width:100%">
         <thead>
             <tr>
                 <th scope="col" style="width:10%">#</th>
@@ -13,15 +13,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($terminology as $result)
+            @foreach ($terminology as $terminologies)
             <tr>
                 <td><input type="checkbox" /></td>
-                <td>{{ $result->comment_id }}</td>
-                <td>{{ $result->comment_name }}</td>
-                <td>{{ $result->forename . " " . $result->surname }} </td>
+                <td>{{ $terminologies->comment_id }}</td>
+                <td terminologies>{{ $terminologies->comment_name }}</td>
+                <td>{{ $terminologies->forename . " " . $terminologies->surname }} </td>
                 <td>
-                    <a href="javascript:void(0)" id="edit-button" class="btn btn-primary edit" data-id="{{ $result->id }}">Edit</a>
-                    <a href="javascript:void(0)" id="delete-button" class="btn btn-primary delete" data-id="{{ $result->id }}">Delete</a>
+                    <a href="javascript:void(0)" id="edit-button" class="btn btn-primary edit" data-id="{{ $terminologies->id }}">Edit</a>
+                    <a href="javascript:void(0)" id="delete-button" class="btn btn-primary delete" data-id="{{ $terminologies->id }}">Delete</a>
                 </td>
             </tr>
             @endforeach

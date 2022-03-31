@@ -19,8 +19,8 @@ class AjaxCOMMENTCRUDController extends Controller
     public function index()
     {
         
-            $data['results'] = Results::orderBy('id','asc')->paginate();
-            $data['terminology'] = Results::orderBy('id','asc')->paginate();
+            $data['results'] = Results::orderBy('id','asc')->where('validated', '1')->paginate();
+            $data['terminology'] = Terminology::orderBy('id','asc')->where('validated', '1')->paginate();
 
             return view('ajax-all-comments-crud',$data);
 

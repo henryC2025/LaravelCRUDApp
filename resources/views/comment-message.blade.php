@@ -20,7 +20,7 @@
                 </p>
 
                 <button class="btn text-center btn col-md-12 " onclick="history.back()">Go Back</button>
-                <textarea class="mt-1" id="message" rows="10" cols="100" name="message-comment">&#13;&#10;<?php echo str_replace('-', '', $_GET["message-comment"]) ?></textarea>
+                <textarea class="mt-1" id="message" rows="10" cols="100" name="message-comment">Here are your comments: &#13;&#10;<?php echo str_replace('-', '', $_GET["message-comment"]) ?></textarea>
 
                 <button class="text-center btn col-md-12 " type="button" id="copy">Copy</button>
             </div>
