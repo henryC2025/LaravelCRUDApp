@@ -1,7 +1,14 @@
 @extends('comment-base')
 @section('main')
 
-<div class="col-md-12">
+<div class="col-md-12 ">
+
+    <div class="container">
+        <table id="TableResults" class="center" style="width:20%">
+            <td><button type="button" id="addNewComment" class="btn btn-success addBtn">➕</button></td>
+        </table>
+    </div>
+
     <table id="TableResults" class="table" style="width:100%">
         <thead>
             <tr>
@@ -21,8 +28,7 @@
                 <td class={{$result->style == 'p' ? 'positive' : ''}}>{{ $result->comment_name }}</td>
                 <td>{{ $result->forename . " " . $result->surname }} </td>
                 <td>
-                    {{-- <a href="javascript:void(0)" id="edit-button" class="btn btn-primary edit" data-id="{{ $result->id }}">Edit</a>
-                    <a href="javascript:void(0)" id="delete-button" class="btn btn-primary delete" data-id="{{ $result->id }}">Delete</a> --}}
+
                 </td>
             </tr>
             @endforeach

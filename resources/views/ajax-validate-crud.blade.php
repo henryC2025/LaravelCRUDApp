@@ -46,7 +46,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <br>
+
             <div class="col-md-12 card-header text-center font-weight-bold">
 
                 <h2>Validate Terminology</h2>

@@ -21,7 +21,6 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 mt-1 mb-2"><button type="button" id="addNewComment" class="btn btn-success addBtn">Add New Comment</button></div>
 
             <!-- main section table --->
             @yield('main')

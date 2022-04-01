@@ -36,7 +36,7 @@
                     <tr>
                         <td><input type="checkbox" /></td>
                         <td>{{ $result->comment_id }}</td>
-                        <td>{{ $result->comment_name }}</td>
+                        <td class={{$result->style == 'p' ? 'positive' : ''}}>{{ $result->comment_name }}</td>
                         <td>{{ $result->forename . " " . $result->surname }} </td>
                         <td></td>
                     </tr>
@@ -65,7 +65,7 @@
                     <tr>
                         <td><input type="checkbox" /></td>
                         <td>{{ $terminologies->comment_id }}</td>
-                        <td>{{ $terminologies->comment_name }}</td>
+                        <td class={{$terminologies->style == 'p' ? 'positive' : ''}}>{{ $terminologies->comment_name }}</td>
                         <td>{{ $terminologies->forename . " " . $terminologies->surname }} </td>
                         <td></td>
                     </tr>

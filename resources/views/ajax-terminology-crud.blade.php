@@ -2,6 +2,13 @@
 @section('main')
 
 <div class="col-md-12">
+
+    <div class="container">
+        <table id="TableTerminology" class="center" style="width:20%">
+            <td><button type="button" id="addNewComment" class="btn btn-success addBtn">➕</button></td>
+        </table>
+    </div>
+
     <table id="TableTerminology" class="table" style="width:100%">
         <thead>
             <tr>
@@ -17,11 +24,10 @@
             <tr>
                 <td><input type="checkbox" /></td>
                 <td>{{ $terminologies->comment_id }}</td>
-                <td terminologies>{{ $terminologies->comment_name }}</td>
+                <td class={{$terminologies->style == 'p' ? 'positive' : ''}}>{{ $terminologies->comment_name }}</td>
                 <td>{{ $terminologies->forename . " " . $terminologies->surname }} </td>
                 <td>
-                    <a href="javascript:void(0)" id="edit-button" class="btn btn-primary edit" data-id="{{ $terminologies->id }}">Edit</a>
-                    <a href="javascript:void(0)" id="delete-button" class="btn btn-primary delete" data-id="{{ $terminologies->id }}">Delete</a>
+
                 </td>
             </tr>
             @endforeach

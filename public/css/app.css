@@ -10181,3 +10181,16 @@ tr {
     color: #98fb98;
 }
 
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    height: 50px;
+    position: relative;
+}
+

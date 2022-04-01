@@ -85,6 +85,9 @@ $(document).ready(function ($) {
         validationDiv.classList.add("hidden");
         styleLabel.classList.add("hidden");
         styleDiv.classList.add("hidden");
+
+        var tableID = $(this).closest("table").attr("id");
+        getTableName(tableID);
     });
 
     $("body").on("click", "#edit-button", function (event) {
